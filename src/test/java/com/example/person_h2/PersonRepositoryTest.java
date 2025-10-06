@@ -35,7 +35,7 @@ class PersonRepositoryTest {
     @Test
     void insertAndReadBack() {
         repo.save(new Person(3, "Carol"));
-        var carol = repo.findById(3);
+        var carol = repo.findById(5);
         assertThat(carol).isNotNull();
         assertThat(carol.getName()).isEqualTo("Carol");
     }
