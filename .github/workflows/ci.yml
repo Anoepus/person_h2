@@ -1,0 +1,29 @@
+name: CI Pipeline
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Java (eksempel)
+        uses: actions/setup-java@v4
+        with:
+          java-version: '21'
+          distribution: 'temurin'
+
+      - name: Build project
+        run: |
+          javac src/**/*.java
+
+      - name: Run tests
+        run: |
+          java -jar junit-platform-console-standalone.jar -cp src --scan-class-path
